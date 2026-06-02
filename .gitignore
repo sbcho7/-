@@ -7,17 +7,6 @@ __pycache__/
 .Python
 *.egg-info/
 
-# 데이터 파일 — 로컬 전용 (민감 데이터 포함 가능)
-data/channel/*.csv
-data/channel/*.xlsx
-data/appsflyer/*.csv
-data/appsflyer/*.xlsx
-
-# 단, data 폴더 구조는 유지
-!data/channel/.gitkeep
-!data/appsflyer/.gitkeep
-!data/README.md
-
 # Streamlit
 .streamlit/secrets.toml
 

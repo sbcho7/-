@@ -60,7 +60,20 @@ with st.sidebar:
 df_raw = load_and_join(channel_folder, appsflyer_folder)
 
 if df_raw.empty:
+    import glob as _glob
+    ch_exists  = os.path.isdir(channel_folder)
+    af_exists  = os.path.isdir(appsflyer_folder)
+    ch_files   = _glob.glob(os.path.join(channel_folder,    "*.csv")) if ch_exists else []
+    af_files   = _glob.glob(os.path.join(appsflyer_folder, "*.csv")) if af_exists else []
+
     st.warning("데이터가 없습니다. 폴더 경로를 확인해 주세요.")
+    with st.expander("🔍 경로 진단", expanded=True):
+        st.write(f"**채널 폴더 존재:** `{ch_exists}` → `{channel_folder}`")
+        st.write(f"**AF 폴더 존재:** `{af_exists}` → `{appsflyer_folder}`")
+        st.write(f"**채널 CSV:** {ch_files}")
+        st.write(f"**AF CSV:** {af_files}")
+        st.write(f"**앱 루트:** `{_BASE}`")
+        st.write(f"**루트 파일 목록:** `{os.listdir(_BASE) if os.path.isdir(_BASE) else '없음'}`")
     st.stop()
 
 # ─── 사이드바 필터 ────────────────────────────────────────────────────────
